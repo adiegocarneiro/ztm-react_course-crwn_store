@@ -6,4 +6,12 @@
     h2 {
         margin: 10px, 0;
     }
+    form {
+        
+        align-items: flex-end;
+        .form-buttons{
+            display:flex;
+            justify-content: flex-end;
+        }
+    }
 }
