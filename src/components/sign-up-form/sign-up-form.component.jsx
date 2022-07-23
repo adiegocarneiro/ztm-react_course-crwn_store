@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utils/firebase.utils';
 import Button from '../button/button.component';
 import FormInput from '../form-input/form-input.component';
-import './sign-up-form.styles.scss';
+import { FormButtons, SignUpContainer } from './sign-up-form.styles.jsx';
 
 const defaultFormFields = {
     displayName: '',
@@ -31,17 +31,6 @@ const SignUpForm = () => {
                 createUserDocumentFromAuth(user,{displayName});
                 resetFormFields();
         })
-        // try{
-        //     const {user} = await createAuthUserWithEmailAndPassword(email, password);
-        //     await createUserDocumentFromAuth(user, { displayName });
-        //     resetFormFields();
-        // }catch(error){
-        //     if(error.code === 'auth/email-already-in-use'){
-        //         alert('cannot create user: email already in use!')
-        //     }else{
-        //         console.log('user creation encountered an error', error);
-        //     }
-        // }
     }
 
     const resetFormFields = () => {
@@ -49,7 +38,7 @@ const SignUpForm = () => {
     }
 
     return(
-        <div className='sign-up-container'>
+        <SignUpContainer>
             <h2>Don't have an account?</h2>
             <span>Sign up with your e-mail and password</span>
             <form onSubmit={handleSubmit} >
@@ -83,11 +72,11 @@ const SignUpForm = () => {
                     required value={confirmPassword}
                 />
                 </div>
-                <div className='form-buttons'>
+                <FormButtons>
                     <Button  type='submit'>Submit</Button>
-                </div>
+                </FormButtons>
             </form>
-        </div>
+        </SignUpContainer>
     )
 }
 
