@@ -11,7 +11,7 @@ import { CartContext } from '../../contexts/cart.context';
 const Navigation = () =>{
     const { currentUser } = useContext(UserContext);
     const { isCartOpen } = useContext(CartContext);
-    
+
     return(
     <>
         <NavigationContainer>
@@ -20,7 +20,9 @@ const Navigation = () =>{
                     <CrwnLogo className='logo'/>
                 </div>
             </LogoContainer>
+            
             <NavLinksContainer>
+            {currentUser && <div style={{marginRight:'16px'}}> HELLO, {currentUser.displayName}</div>}
                 <Link className="nav-link" to='/shop'>
                     SHOP
                 </Link>
