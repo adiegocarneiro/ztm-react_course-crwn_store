@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { useReducer, createContext } from 'react';
+import { createAction } from '../utils/reducer/reducer.util'
 
 export const CART_ACTION_TYPES = {
   TOGGLE_CART_OPEN: 'TOGGLE_CART_OPEN',
@@ -92,7 +92,11 @@ export const CartProvider = ({children}) => {
       return total + currentItem.quantity * currentItem.price;
     },0)
 
-    dispatch({type: CART_ACTION_TYPES.UPDATE_CART_ITEMS, payload: {cartItems: newCartItems, cartCount: newCartCount, cartTotal: newCartTotal}})
+    dispatch(createAction(CART_ACTION_TYPES.UPDATE_CART_ITEMS, {
+      cartItems: newCartItems, 
+      cartCount: newCartCount, 
+      cartTotal: newCartTotal
+    }))
   }
 
   const addItemToCart = ( productToAdd ) => {
@@ -111,7 +115,7 @@ export const CartProvider = ({children}) => {
   }
 
   const setIsCartOpen = () => {
-    dispatch({type: CART_ACTION_TYPES.TOGGLE_CART_OPEN, payload: !isCartOpen})
+    dispatch(createAction(CART_ACTION_TYPES.TOGGLE_CART_OPEN, !isCartOpen))
   }
   const values = {
     isCartOpen, 
